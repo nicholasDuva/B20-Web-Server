@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CSCB20 - Syllabus</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='syl_better.css') }}">
+</head>
+<header>
+<nav class="navbar">
+  <ul>
+    <li><a href="{{ url_for('home') }}">Home</a></li>
+    <li><a href="{{ url_for('syllabus') }}">Syllabus</a></li>
+    <li><a href="{{ url_for('modules') }}">Lecture Notes + Tutorials</a></li>
+    <li><a href="{{ url_for('assignments') }}">Assignments</a></li>
+    <li><a href="{{ url_for('library_resources') }}">Library Resources</a></li>
+
+    <!-- Conditional link for students -->
+    {% if session.get('user_type') == 'student' %}
+      <li><a href="{{ url_for('student.student_marks') }}">Student Marks</a></li>
+      <li><a href="{{ url_for('student.feedback') }}">Leave Feedback</a></li>
+      <!-- <li><a href="{{ url_for('student.remark_requests') }}">Request Remark</a></li> -->
+    {% endif %}
+
+    <!-- Conditional link for instructors -->
+    {% if session.get('user_type') == 'instructor' %}
+      <li><a href="{{ url_for('instructor.view_feedback') }}">View Feedback</a></li>
+      <li><a href="{{ url_for('instructor.enter_marks') }}">Enter Marks</a></li>
+      <li><a href="{{ url_for('instructor.view_remark_requests') }}">View Remark Requests</a></li>
+    {% endif %}
+
+    <!-- Login/logout logic -->
+    {% if session.get('user_id') %}
+      <li><a href="{{ url_for('logout') }}">Logout</a></li>
+    {% else %}
+      <li><a href="{{ url_for('login') }}">Login</a></li>
+      <li><a href="{{ url_for('register') }}">Register</a></li>
+    {% endif %}
+  </ul>
+</nav>
+
+
+  </header>
+<body>
+  <main>
+    <h1>CSCB20 – Winter 2025</h1>
+    <h2>University of Toronto Scarborough</h2>
+    <h3>Introduction to Databases and Web Applications</h3>
+    <p><strong>Course Description:</strong></p>
+    <p>The purpose of this course is to give students a practical introduction to databases and Web app development.</p>
+    <h4>Topics:</h4>
+    <ul>
+        <li><strong>Databases:</strong>
+            <ul>
+                <li>Key terminology and real-world applications</li>
+                <li>Creating, querying, and updating databases</li>
+                <li>Designing databases using the entity-relationship model</li>
+            </ul>
+        </li>
+        <li><strong>Web documents and applications:</strong>
+            <ul>
+                <li>Developing static and interactive web documents</li>
+                <li>Setting up web servers and generating dynamic server-side content</li>
+                <li>Integrating web applications with databases</li>
+            </ul>
+        </li>
+    </ul>
+    <h3>Course Administration</h3>
+    <p><strong>Instructor:</strong> Purva Gawde</p>
+    <p><strong>Email:</strong> purva.gawde@utoronto.ca</p>
+    <p><strong>Office Hours Location:</strong> IA 4056</p>
+    <p><strong>Lecture Schedule:</strong></p>
+    <ul>
+        <li>Friday: 9:00 - 11:00</li>
+        <li>Monday: 11:00 - 12:00</li>
+    </ul>
+    <p><em>Lectures are in-person and will not be recorded.</em></p>
+    <h3>Required Background</h3>
+    <p>Experience with programming in an imperative language such as Python, Java, or C. This course may not be taken after or concurrently with any C- or D-level CSC course.</p>
+    <h3>Motivation</h3>
+    <p>Databases are integral to modern technology, supporting websites, applications, and online services. This course teaches students how to integrate databases with web applications.</p>
+    <h3>Course Learning Outcomes</h3>
+    <ul>
+        <li>Understand the basic concepts and applications of database systems.</li>
+        <li>Learn relational database theory and relational algebra.</li>
+        <li>Master SQL for querying databases.</li>
+        <li>Develop database-driven web applications using HTML, JavaScript, Flask, and open-source tools.</li>
+    </ul>
+    <h3>Labs/Tutorials</h3>
+    <p>Weekly in-person tutorials will be conducted.</p>
+    <h3>Tentative Schedule</h3>
+    <table border="1">
+        <tr>
+            <th>Week</th>
+            <th>Topics</th>
+        </tr>
+        <tr>
+            <td>0</td>
+            <td>Introduction – Databases, Relational Model</td>
+        </tr>
+        <tr>
+            <td>1-2</td>
+            <td>Relational Model, Relational Algebra</td>
+        </tr>
+        <tr>
+            <td>3-4</td>
+            <td>Relational Algebra Queries and SQL Query Language</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>SQL and Introduction to Web Development</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>HTML, CSS, Box Model</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>Introduction to Flask, Flexbox and Media Queries</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>Flask and Introduction to JavaScript</td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>Integrating Flask and SQL</td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td>Flask and SQL, examples</td>
+        </tr>
+        <tr>
+            <td>11</td>
+            <td>Wrap-up</td>
+        </tr>
+    </table>
+    <h3>Course Work and Grading</h3>
+    <p><strong>Assignments, Exams, and Participation:</strong></p>
+    <ul>
+        <li>3 Assignments (33%)</li>
+        <li>Mid-term (25%)</li>
+        <li>Tutorial Attendance (2%)</li>
+        <li>Final Exam (40%) - Minimum 35% required to pass</li>
+    </ul>
+    <h3>Course Policies</h3>
+    <ul>
+        <li>Attend all lectures and tutorials.</li>
+        <li>Assignments are submitted through MARKUS, not email.</li>
+        <li>Late submissions incur a 10% penalty per day (max 3 days).</li>
+        <li>Re-mark requests must be made within 48 hours.</li>
+    </ul>
+    <h3>Academic Integrity</h3>
+    <p>Plagiarism is strictly prohibited. Do not share or copy assignments. Violations will be reported.</p>
+    <h3>Getting Help</h3>
+    <ul>
+        <li>Piazza (for discussions and help from peers and TAs)</li>
+        <li>Tutorials (hands-on exercises and TA guidance)</li>
+        <li>Office Hours (ask the instructor directly)</li>
+        <li>Email (last resort, avoid emailing within 24 hours of a deadline)</li>
+    </ul>
+    <h3>Copyright and Equity</h3>
+    <p>Lecture materials cannot be reproduced without consent. The University of Toronto promotes diversity, equity, and inclusion.</p>
+    <h3>Accommodations</h3>
+    <p>Students requiring accommodations should contact Accessibility Services.</p>
+
+  </main>
+
+  <footer>
+    <p>
+      <a href="https://www.utsc.utoronto.ca/cms/computer-science" target="_blank">Faculty of Computer Science at UofT</a>
+    </p>
+    <p>Site design by Nicholas D'Uva</p>
+  </footer>
+</body>
+</html>

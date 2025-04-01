@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CSCB20 - Home</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+
+</head>
+<body>
+<header>
+<nav class="navbar">
+  <ul>
+    <li><a href="{{ url_for('home') }}">Home</a></li>
+    <li><a href="{{ url_for('syllabus') }}">Syllabus</a></li>
+    <li><a href="{{ url_for('modules') }}">Lecture Notes + Tutorials</a></li>
+    <li><a href="{{ url_for('assignments') }}">Assignments</a></li>
+    <li><a href="{{ url_for('library_resources') }}">Library Resources</a></li>
+
+    <!-- Conditional link for students -->
+    {% if session.get('user_type') == 'student' %}
+      <li><a href="{{ url_for('student.student_marks') }}">Student Marks</a></li>
+      <li><a href="{{ url_for('student.feedback') }}">Leave Feedback</a></li>
+      <!-- <li><a href="{{ url_for('student.remark_requests') }}">Request Remark</a></li> -->
+    {% endif %}
+
+    <!-- Conditional link for instructors -->
+    {% if session.get('user_type') == 'instructor' %}
+      <li><a href="{{ url_for('instructor.view_feedback') }}">View Feedback</a></li>
+      <li><a href="{{ url_for('instructor.enter_marks') }}">Enter Marks</a></li>
+      <li><a href="{{ url_for('instructor.view_remark_requests') }}">View Remark Requests</a></li>
+    {% endif %}
+
+    <!-- Login/logout logic -->
+    {% if session.get('user_id') %}
+      <li><a href="{{ url_for('logout') }}">Logout</a></li>
+    {% else %}
+      <li><a href="{{ url_for('login') }}">Login</a></li>
+      <li><a href="{{ url_for('register') }}">Register</a></li>
+    {% endif %}
+  </ul>
+</nav>
+
+
+  </header>
+
+  <main>
+    <h1>Welcome to CSCB20</h1>
+
+
+  <section>
+    <p>
+      This course provides a hands-on introduction to databases and web application development. You will gain both theoretical knowledge and practical skills to build a solid foundation in these areas.
+    </p>
+  </section>
+
+  <section>
+    <h3>What You’ll Learn:</h3>
+    <div>
+      <h4>Databases:</h4>
+      <ul>
+        <li>Key terminology and practical applications</li>
+        <li>Creating, querying, and updating databases</li>
+        <li>Designing databases using the entity-relationship model</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Web Development:</h4>
+      <ul>
+        <li>Building static and interactive web documents</li>
+        <li>Setting up web servers and generating dynamic, server-side content</li>
+        <li>Developing web applications integrated with databases</li>
+      </ul>
+    </div>
+    <p>
+      We’re excited to have you in the course and look forward to helping you develop valuable skills in databases and web development!
+    </p>
+  </section>
+
+  <section>
+    <h3>Contact Information</h3>
+    <p>
+      <strong>Course Coordinator:</strong> Purva Gawde<br>
+      <strong>Email:</strong> <a href="mailto:purva.gawde@utoronto.ca">purva.gawde@utoronto.ca</a>
+    </p>
+  </section>
+
+  <section>
+    <h3>Your Instructor</h3>
+    <p><strong>Purva Gawde</strong></p>
+    <figure>
+      <img src="./imgs/image.png">
+      <figcaption>Purva Gawde</figcaption>
+    </figure>
+    <h4>Office Hours:</h4>
+    <p>
+      <strong>Location:</strong> IA 4056<br>
+      <strong>Time:</strong> Monday 11:00 to 12:00
+    </p>
+  </section>
+
+  <section>
+    <!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: center;
+            width: 40px;
+        }
+    </style>
+</head>
+<body>
+    <h2>March 2025</h2>
+    <table>
+        <tr>
+            <th>SUN</th>
+            <th>MON</th>
+            <th>TUE</th>
+            <th>WED</th>
+            <th>THU</th>
+            <th>FRI</th>
+            <th>SAT</th>
+        </tr>
+        <tr>
+            <td>23</td>
+            <td>24</td>
+            <td>25</td>
+            <td>26</td>
+            <td>27</td>
+            <td>28</td>
+            <td>1 </td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td>11</td>
+            <td>12</td>
+            <td>13</td>
+            <td>14</td>
+            <td>15</td>
+            <td>16</td>
+        </tr>
+        <tr>
+            <td>16</td>
+            <td>17</td>
+            <td>18</td>
+            <td>19</td>
+            <td>20</td>
+            <td>21</td>
+            <td>22</td>
+        </tr>
+        <tr>
+            <td>23</td>
+            <td>24</td>
+            <td>25</td>
+            <td>26</td>
+            <td>27</td>
+            <td>28</td>
+            <td>29</td>
+        </tr>
+        <tr>
+            <td>30</td>
+            <td>31</td>
+        </tr>
+    </table>
+</body>
+</html>
+
+
+    
+  </section>
+
+
+  <section>
+    <h3>Accessibility Statement</h3>
+    <p>
+      Students with diverse learning styles and needs are welcome in this course. In particular, if you have a disability/health consideration that may require accommodations, please feel free to approach your instructor, course coordinator, and/or the AccessAbility Services Office as soon as possible. I will work with you and AccessAbility Services to ensure you can achieve your learning goals in this course. Enquiries are confidential.
+    </p>
+  </section>
+
+  <section>
+    <h3>Diversity Statement</h3>
+    <p>
+      Diversity is central to who we are and what we do at the University of Toronto Scarborough. We believe it is vital to foster diversity in all facets of our campus culture. In this course, it is the responsibility of each and every one of us — the instructors, the teaching assistants, and, most importantly, the students — to provide a welcoming and supportive environment for all. If you have a concern, please feel free to approach your instructor/course coordinator, or the UTSC Equity & Diversity Office as soon as possible. Enquiries are confidential.
+    </p>
+  </section>
+
+  <section>
+    <h3>How The Course Is Run</h3>
+    <p>
+      Each week, we will meet twice, once for the lecture and once for the tutorial. Both lectures and tutorials will be in person and will not be recorded.
+    </p>
+  </section>
+
+  <section>
+    <h3>Coursework Breakdown</h3>
+    <div>
+      <h4>Assignments (33%)</h4>
+      <ul>
+        <li>Assignment 1: 8%</li>
+        <li>Assignment 2: 10%</li>
+        <li>Assignment 3: 15%</li>
+      </ul>
+      <p>Assignments will cover material from 2–3 weeks and will be posted on Quercus.</p>
+    </div>
+    <div>
+      <h4>Mid-Term (25%)</h4>
+      <p>The mid-term exam will be held in-person during lecture time.</p>
+      <ul>
+        <li><strong>Tentative Date:</strong> February 28</li>
+        <li><strong>Duration:</strong> 120 minutes</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Tutorial Attendance (2%)</h4>
+      <p>
+        Tutorials will include collaborative problem-solving and practical demonstrations of concepts covered in class. Attendance will be recorded, and you must attend at least 7 tutorials to earn these marks. Tutorials are not graded, and problems solved during tutorials are for practice only. If you are unable to attend a tutorial, please submit a valid reason.
+      </p>
+    </div>
+    <div>
+      <h4>Final Exam (40%)</h4>
+      <p>
+        There will be one in-person final exam for the course. <em>Note: You must score at least 35% on the final exam to pass the course.</em>
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <h3>Academic Integrity</h3>
+    <p>
+      All of the work you submit must be done by you, and your work must not be submitted by someone else. Plagiarism is academic fraud and is taken very seriously. The department uses software that compares programs for evidence of similar code. Please read the Rules and Regulations from the U of T Governing Council, especially the Code of Behaviour on Academic Matters.
+    </p>
+    <p>
+      Please also see the information for students from the Office of Student Academic Integrity.
+    </p>
+    <p>
+      Please don't copy. We want you to succeed and are here to help.
+    </p>
+    <h4>The simplest advice for avoiding plagiarism is:</h4>
+    <ul>
+      <li>
+        Never look at another student’s assignment solution (except for your teammates, if collaboration is allowed). This includes solutions on paper, computer screens, or any other medium. Similarly, never show your assignment solution to another student. This rule applies to all stages of your work, including drafts and incomplete solutions.
+      </li>
+      <li>
+        If you find code on the web that solves part or all of an assignment, do not use or submit any part of it. A large percentage of the academic offences in CS involve students who have never met, and who just happened to find the same solution online. If you find a solution, someone else will too.
+      </li>
+      <li>
+        Be very careful when engaging "tutoring services". In previous years, we had students suspended from the university as a result of submitting work that was done with the "help" of such "tutors". When in doubt whether a tutoring company is offering real teaching or is helping students cheat, do not hesitate to ask your instructor — we are here to help!
+      </li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+    <p>
+      <a href="https://www.utsc.utoronto.ca/cms/computer-science" target="_blank">Faculty of Computer Science at UofT</a>
+    </p>
+    <p>Site design by Nicholas D'Uva</p>
+  </footer>
+</body>
+</html>

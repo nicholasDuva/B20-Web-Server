@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+  <!-- Example: link to your CSS file in modules -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+  <!-- jQuery + your script.js -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="/static/script.js"></script>
+</head>
+<body>
+  <!-- Flash messages -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="flash-messages">
+        {% for category, msg in messages %}
+          <div class="alert {{ category }}">{{ msg }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <h2>Register</h2>
+  <form action="/register" method="POST">
+    <label for="username">Username:</label>
+    <input type="text" name="username" required>
+
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password" required>
+
+    <label for="confirm_password">Confirm Password:</label>
+    <input type="password" name="confirm_password" id="confirm_password" required>
+
+    <p>Select Account Type:</p>
+    <label>
+      <input type="radio" name="user_type" value="student" checked>
+      Student
+    </label>
+    <label>
+      <input type="radio" name="user_type" value="instructor">
+      Instructor
+    </label>
+
+    <button type="submit">Register</button>
+  </form>
+
+  <p>Already have an account? <a href="/login">Login here</a></p>
+</body>
+</html>

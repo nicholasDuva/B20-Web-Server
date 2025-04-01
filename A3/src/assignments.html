@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignments - CSCB20</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+</head>
+<header>
+<nav class="navbar">
+  <ul>
+    <li><a href="{{ url_for('home') }}">Home</a></li>
+    <li><a href="{{ url_for('syllabus') }}">Syllabus</a></li>
+    <li><a href="{{ url_for('modules') }}">Lecture Notes + Tutorials</a></li>
+    <li><a href="{{ url_for('assignments') }}">Assignments</a></li>
+    <li><a href="{{ url_for('library_resources') }}">Library Resources</a></li>
+
+    <!-- Conditional link for students -->
+    {% if session.get('user_type') == 'student' %}
+      <li><a href="{{ url_for('student.student_marks') }}">Student Marks</a></li>
+      <li><a href="{{ url_for('student.feedback') }}">Leave Feedback</a></li>
+      <!-- <li><a href="{{ url_for('student.remark_requests') }}">Request Remark</a></li> -->
+    {% endif %}
+
+    <!-- Conditional link for instructors -->
+    {% if session.get('user_type') == 'instructor' %}
+      <li><a href="{{ url_for('instructor.view_feedback') }}">View Feedback</a></li>
+      <li><a href="{{ url_for('instructor.enter_marks') }}">Enter Marks</a></li>
+      <li><a href="{{ url_for('instructor.view_remark_requests') }}">View Remark Requests</a></li>
+    {% endif %}
+
+    <!-- Login/logout logic -->
+    {% if session.get('user_id') %}
+      <li><a href="{{ url_for('logout') }}">Logout</a></li>
+    {% else %}
+      <li><a href="{{ url_for('login') }}">Login</a></li>
+      <li><a href="{{ url_for('register') }}">Register</a></li>
+    {% endif %}
+  </ul>
+</nav>
+
+
+  </header>
+<body>    
+    <main>   
+            <section>
+                <h2>Upcoming Assignments</h2>
+                <ul>
+                    <li>Assignment 2 - Due Mar 12 at 11:59 PM</li>
+                </ul>
+                
+                <h2>Past Assignments</h2>
+                <ul>
+                    <li>Assignment 1 - Due Feb 11 at 11:59 PM</li>
+                </ul>
+            </section>
+        </main>
+  <footer>
+    <p>
+      <a href="https://www.utsc.utoronto.ca/cms/computer-science" target="_blank">Faculty of Computer Science at UofT</a>
+    </p>
+    <p>Site design by Nicholas D'Uva</p>
+  </footer>
+</body>
+</html>
+

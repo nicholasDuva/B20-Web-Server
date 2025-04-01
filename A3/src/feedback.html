@@ -1,0 +1,65 @@
+<!-- src/feedback.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Anonymous Feedback</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+</head>
+<header>
+<nav class="navbar">
+  <ul>
+    <li><a href="{{ url_for('home') }}">Home</a></li>
+    <li><a href="{{ url_for('syllabus') }}">Syllabus</a></li>
+    <li><a href="{{ url_for('modules') }}">Lecture Notes + Tutorials</a></li>
+    <li><a href="{{ url_for('assignments') }}">Assignments</a></li>
+    <li><a href="{{ url_for('library_resources') }}">Library Resources</a></li>
+
+    <!-- Conditional link for students -->
+    {% if session.get('user_type') == 'student' %}
+      <li><a href="{{ url_for('student.student_marks') }}">Student Marks</a></li>
+      <li><a href="{{ url_for('student.feedback') }}">Leave Feedback</a></li>
+      <!-- <li><a href="{{ url_for('student.remark_requests') }}">Request Remark</a></li> -->
+    {% endif %}
+
+    <!-- Conditional link for instructors -->
+    {% if session.get('user_type') == 'instructor' %}
+      <li><a href="{{ url_for('instructor.view_feedback') }}">View Feedback</a></li>
+      <li><a href="{{ url_for('instructor.enter_marks') }}">Enter Marks</a></li>
+      <li><a href="{{ url_for('instructor.view_remark_requests') }}">View Remark Requests</a></li>
+    {% endif %}
+
+    <!-- Login/logout logic -->
+    {% if session.get('user_id') %}
+      <li><a href="{{ url_for('logout') }}">Logout</a></li>
+    {% else %}
+      <li><a href="{{ url_for('login') }}">Login</a></li>
+      <li><a href="{{ url_for('register') }}">Register</a></li>
+    {% endif %}
+  </ul>
+</nav>
+
+
+  </header>
+<body>
+    <h1>Submit Anonymous Feedback</h1>
+    <form method="POST">
+        <label for="instructor">Select Instructor:</label>
+        <select name="instructor" id="instructor">
+            <!-- For demonstration, options are hard-coded -->
+            {% for instructor in instructors %}
+            <option value="{{ instructor.id }}">{{ instructor.username }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <label>What do you like about the instructor’s teaching?</label><br>
+        <textarea name="teaching_feedback" required></textarea><br><br>
+        <label>What do you recommend the instructor to do to improve their teaching?</label><br>
+        <textarea name="teaching_improvement" required></textarea><br><br>
+        <label>What do you like about the labs?</label><br>
+        <textarea name="labs_feedback" required></textarea><br><br>
+        <label>What do you recommend the lab instructors to do to improve their lab teaching?</label><br>
+        <textarea name="labs_improvement" required></textarea><br><br>
+        <button type="submit">Submit Feedback</button>
+    </form>
+</body>
+</html>

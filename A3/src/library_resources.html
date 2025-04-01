@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Resources</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+</head>
+<header>
+<nav class="navbar">
+  <ul>
+    <li><a href="{{ url_for('home') }}">Home</a></li>
+    <li><a href="{{ url_for('syllabus') }}">Syllabus</a></li>
+    <li><a href="{{ url_for('modules') }}">Lecture Notes + Tutorials</a></li>
+    <li><a href="{{ url_for('assignments') }}">Assignments</a></li>
+    <li><a href="{{ url_for('library_resources') }}">Library Resources</a></li>
+
+    <!-- Conditional link for students -->
+    {% if session.get('user_type') == 'student' %}
+      <li><a href="{{ url_for('student.student_marks') }}">Student Marks</a></li>
+      <li><a href="{{ url_for('student.feedback') }}">Leave Feedback</a></li>
+      <!-- <li><a href="{{ url_for('student.remark_requests') }}">Request Remark</a></li> -->
+    {% endif %}
+
+    <!-- Conditional link for instructors -->
+    {% if session.get('user_type') == 'instructor' %}
+      <li><a href="{{ url_for('instructor.view_feedback') }}">View Feedback</a></li>
+      <li><a href="{{ url_for('instructor.enter_marks') }}">Enter Marks</a></li>
+      <li><a href="{{ url_for('instructor.view_remark_requests') }}">View Remark Requests</a></li>
+    {% endif %}
+
+    <!-- Login/logout logic -->
+    {% if session.get('user_id') %}
+      <li><a href="{{ url_for('logout') }}">Logout</a></li>
+    {% else %}
+      <li><a href="{{ url_for('login') }}">Login</a></li>
+      <li><a href="{{ url_for('register') }}">Register</a></li>
+    {% endif %}
+  </ul>
+</nav>
+
+
+  </header>
+<body>
+<body>
+  <div class="intro">
+    <p>
+      <h2>University of Toronto Scarborough Campus (UTSC)</h2>
+    </p>
+    <p>
+      <a href="https://utsc.library.utoronto.ca/" target="_blank">Library website</a>
+      &nbsp;|&nbsp;
+<a href="https://www.utsc.utoronto.ca/library">
+  <img src="./imgs/lib_logo.png" alt="University of Toronto Scarborough Library logo" class="library-logo">
+</a>
+    </p>
+    <p>Learn more about our services, and search the catalogue for books, articles and other resources.</p>
+  </div>
+
+  <div class="library-hours">
+    <h2>Library hours</h2>
+          <a href="https://utsc.library.utoronto.ca/hours" target="_blank">Hours</a><p>of operation for our study spaces, information and reference desks.</p>
+  </div>
+
+  <div class="research-help">
+    <h2>Library and Research help</h2>
+    <p>Ask us any questions you have regarding library research and services.</p>
+        <p><a href="https://utsc.library.utoronto.ca/library-help" target="_blank">Click Here for Library and Research Help</a></p>
+    <p>
+      <h3>Chat with a Librarian</h3>
+    </p>
+  </div>
+
+  <div class="chat-info">
+    <p>
+      Get research help from anywhere! Click on the
+      <a href="https://utsc.library.utoronto.ca/ask" target="_blank">"Ask! Chat with a librarian"</a>
+      icon to start a chat session. We can help you:
+    </p>
+    <ul>
+      <li>Find sources about a topic</li>
+      <li>Locate a specific book or article</li>
+      <li>Use library tools effectively</li>
+    </ul>
+  </div>
+
+  <div class="liaison-librarians">
+    <h2>Liaison Librarians</h2>
+    <ul>
+      <li><a href="https://utsc.library.utoronto.ca/librarians" target="_blank">UTSC Librarians</a></li>
+      <li><p>Contact the Librarian for your discipline</p></li>
+    </ul>
+  </div>
+
+  <div class="more-resources">
+    <h2>More Resources</h2>
+    <a href="https://guides.library.utoronto.ca/c.php?g=704043&p=5007019#s-lg-box-wrapper-18572795" target="_blank">Quick Links</a>
+    <ul>
+      <li><p>Find the best research resources for your topic</p></li>
+      <li><p>Find your course readings</p></li>
+      <li><p>Find old exams</p></li>
+      <li><p>Break down your assignment into manageable steps</p></li>
+    </ul>
+  </div>
+</body>
+
+</body>
+
+  <footer>
+    <p>
+      <a href="https://www.utsc.utoronto.ca/cms/computer-science" target="_blank">Faculty of Computer Science at UofT</a>
+    </p>
+    <p>Site design by Nicholas D'Uva</p>
+  </footer>
+</body>
+</html>

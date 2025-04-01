@@ -1,0 +1,46 @@
+A3
+│
+├── instance
+│   └── users.db
+│
+├── src
+│   ├── assignments.html
+│   ├── calendar.html
+│   ├── index.html
+│   ├── library_resources.html
+│   ├── login.html
+│   ├── modules.html
+│   ├── register.html
+│   ├── syllabus.html
+│   ├── student_marks.html         
+│   ├── feedback.html              
+│   ├── instructor_marks.html      
+│   ├── view_feedback.html         
+│   ├── view_remark_requests.html  
+│   └── enter_marks.html          
+│
+├── static
+│   ├── imgs
+│   │   ├── image.png
+│   │   └── lib_logo.png
+│   │
+│   ├── modules
+│   │   ├── w0
+│   │   ├── w1
+│   │   ├── w2
+│   │   ├── w3
+│   │   ├── w4
+│   │   ├── w5
+│   │   ├── w6
+│   │   └── w7
+│   │
+│   ├── index.css
+│   ├── script.js
+│   ├── syl_better.css
+│   ├── student.js               
+│   └── instructor.js            
+│
+├── app.py
+├── models.py                    
+├── student_routes.py            
+└── instructor_routes.py         
